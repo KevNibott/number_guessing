@@ -107,3 +107,58 @@ def manage_user_input():
         exit()
       continue    
   return number_of_attempts
+
+
+def score(new_score_to_add):
+  global list_of_scores
+  list_of_scores.append(new_score_to_add)
+  list_of_scores.sort()
+  return list_of_scores
+
+
+def final_stats(stats_to_analyze):
+  if len(stats_to_analyze) != 0:
+    stat_average = mean(stats_to_analyze)
+    stat_most_times = mode(stats_to_analyze)
+    stat_middle_game = median(stats_to_analyze)
+    stat_best_game = min(stats_to_analyze)
+    print(f"Are you really leaving? Ok, let's summarize: \n -Your average score: {stat_average} \n -Most repeated score: {stat_most_times} \n -And your best score: {stat_best_game}")
+    print("I'm telling you this before you leave just in case you want to keep playing this wonderful game and be a better version of yourself. My Paypal is...")
+  else:
+    print("You didn't even try it. Rude")
+
+
+def game_loop(games_played):
+  global difficulty
+  welcome_msg(games_played)
+  print("Select difficulty: 'easy', 'normal' or 'hard'")
+  difficulty = input("> ")
+  select_difficulty(difficulty.lower())
+  solution_range_indicator_msg()
+  manage_user_input()
+    
+    
+def start_game(): 
+  print("Game Started!")
+  games_played_counter = 0
+  restart = ""
+  
+  if games_played_counter == 0:
+    games_played_counter += 1
+    game_loop(games_played_counter)
+        
+  while True:
+    restart = input("Do you want to play again? (y/n) \n > ")
+    if restart.lower() != "y" and restart.lower() != "n":
+      restart = input("What? I didn't understand. Do you want to play again? (y/n) \n > ")        
+            
+    if restart.lower() == "y":
+      games_played_counter += 1
+      game_loop(games_played_counter)
+    elif restart.lower() == "n":
+      final_stats(list_of_scores)
+      print("Bye! T_T")
+      exit()
+
+            
+start_game()
