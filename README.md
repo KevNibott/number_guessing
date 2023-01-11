@@ -12,4 +12,4 @@
 
 * If you decide to stop playing, before you leave, you will get the statistics of your whole game session.
 
-THE ENTIRE CODE IS MADE BY ME.
+The entire code is made by me.
